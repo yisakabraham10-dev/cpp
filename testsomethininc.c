@@ -1,16 +1,16 @@
-// #include <stdio.h>
+#include <stdio.h>
 
-// int main(){
-//     int a = 1025;
-//     int *p = &a;
+int main(){
+    char a = 'a';
+    char *p = &a;
 
-//     printf("size of an integer %d bytes\n", sizeof(int));
-//     printf("Adress = %d, value= %d \n", p, *p);
+    printf("size of an integer %d bytes\n", sizeof(p));
+    printf("Adress = %d, value= %d, size of the data type= %d, size of the pointer to that datatype= %d \n", p, *p, sizeof(a), sizeof( p));
 
-//     char *p0;
-//     p0 = (char*)p;
+    char *p0;
+    p0 = (char*)p;
 
-//     printf("%d\n",sizeof(p));
-// }
+    printf("%d\n",sizeof(p));
+}
 
-// why is it returning 8
+// why is it returning 8 28:00
