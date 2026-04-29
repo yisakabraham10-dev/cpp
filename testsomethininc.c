@@ -1,16 +1,8 @@
 #include <stdio.h>
 
 int main(){
-    char a = 'a';
-    char *p = &a;
+    float x;
+    x = (float)10/3;
 
-    printf("size of an integer %d bytes\n", sizeof(p));
-    printf("Adress = %d, value= %d, size of the data type= %d, size of the pointer to that datatype= %d \n", p, *p, sizeof(a), sizeof( p));
-
-    char *p0;
-    p0 = (char*)p;
-
-    printf("%d\n",sizeof(p));
+    printf("%f", x);
 }
-
-// why is it returning 8 28:00
