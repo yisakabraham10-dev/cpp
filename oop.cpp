@@ -27,7 +27,7 @@ using namespace std;
 
 class Human_behavior{
     public:
-    void being_angre(){
+    void being_angry(){
         cout<<"fuck off";
     };
 };
