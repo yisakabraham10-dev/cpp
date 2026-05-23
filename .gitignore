@@ -2,3 +2,7 @@ mia
 room
 shukaku
 lalaland.cpp
+*.gch
+*.out
+.cph/
+
