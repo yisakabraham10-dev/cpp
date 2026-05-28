@@ -1,39 +1,48 @@
 #include <iostream>
 #include <vector>
-#include<algorithm>
+#include <algorithm>
 
 using namespace std;
 
-int main(){
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    freopen("shell.in", "r", stdin);
+    freopen("shell.out", "w", stdout);
+
     int x;
-    cin>> x;
+    cin >> x;
 
-    vector<int>possiblities{0,0,0};
+    vector<vector<int>> universes = {
+        {1, 0, 0}, // Universe 1: Pebble starts at Shell 1 (Index 0)
+        {0, 1, 0}, // Universe 2: Pebble starts at Shell 2 (Index 1)
+        {0, 0, 1}  // Universe 3: Pebble starts at Shell 3 (Index 2)
+    };
 
-    //possiblites for the pebble to be inside 1
-    // numbers get inserted in
-    vector<int>universe1{1,0,0};
-    while(x--){
-        int a,b,g;
-        cin>> a >> b>> g;
-        a = a-1;
-        b = b-1;
-        g = g-1; 
+    // Tracks the independent scores for each universe
+    vector<int> points{0, 0, 0};
 
+    while (x--) {
+        int a, b, g;
+        cin >> a >> b >> g;
+        
+        a = a - 1;
+        b = b - 1;
+        g = g - 1;
 
+        for (int i = 0; i < 3; i++) {
+            swap(universes[i][a], universes[i][b]);
 
-        // we swap it and then check if elisse gets the answer correct. If she is correct we will add to a counter
-
-        swap(universe1[a],universe1[b]);
-
-        // if the universe1's elisse's guesses are correct, add a point for elisse
-        int points= 0;
-        if (universe1[g]==universe1[a]){
-            points +=1;
+            if (universes[i][g] == 1) {
+                points[i] += 1;
+            }
         }
     }
 
+    int max_points = max({points[0], points[1], points[2]});
+    
+    cout << max_points << "\n";
+
+    return 0;
 }
