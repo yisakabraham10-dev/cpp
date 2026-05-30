@@ -8,8 +8,6 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    freopen("shell.in", "r", stdin);
-    freopen("shell.out", "w", stdout);
 
     int x;
     cin >> x;
@@ -43,6 +41,8 @@ int main() {
     int max_points = max({points[0], points[1], points[2]});
     
     cout << max_points << "\n";
+
+
 
     return 0;
 }
