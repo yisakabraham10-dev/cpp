@@ -8,6 +8,9 @@ int main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
+    freopen("cowsignal.in", "r", stdin);
+    freopen("cowsignal.out", "w", stdout);
+
     int x, y, m;
 
     cin>>x>>y>>m;
@@ -20,11 +23,10 @@ int main(){
         for (int v =0; v<y; v++){
             new_row.append(m,row[v]);
         }
-    for(int i=0; i<m; i++){
+    for(int n=0; n<m; n++){
         cout<<new_row<<"\n";
     }
 
         
 
-    }
-}
+    }}
