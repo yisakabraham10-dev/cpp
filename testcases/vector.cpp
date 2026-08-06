@@ -11,4 +11,7 @@ int main (){
 
     cout<<a.first<<endl;
     cout<<a.second<<endl;
+
+    pair <string , int> profile = {"yisak ", 20};
+    
 }
