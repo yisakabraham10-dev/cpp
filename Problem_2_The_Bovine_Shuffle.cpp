@@ -12,8 +12,8 @@ int main (){
 
     int shuffle_index[N];
 
-    vector<int> cows_id{N};
-    vector<int> updated_cows_id{N};
+    vector<int> cows_id(N);
+    vector<int> updated_cows_id(N);
     
 
     cin>>N;
