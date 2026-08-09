@@ -11,6 +11,7 @@ int main(){
 
     int farmer = x;
     int bessie = y;
+    int direction = 1;
     int total = 0;
     int start = x;;
     int step = 1;
@@ -20,8 +21,8 @@ int main(){
         int target = start + (direction * step);
 
         //if bessie is in walking range of the farmer
-        if ((farmer<=bessie && bessie<= target) || (bessie<= farmer && target <= bessie)){
-            total += abs(farmer - bessie);
+        if ((start<=bessie && bessie<= target) || (bessie<= start && target <= bessie)){
+            total += abs(start - bessie);
             break;
         }
         
