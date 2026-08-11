@@ -22,10 +22,6 @@ int main (){
         int b;
         cin>>s>>t>>b;
 
-        lower_time_interval.push_back(s);
-        higher_time_interval.push_back(t);
-        number_of_buckets.push_back(b);
-
             for (int i=s; i<= t; i++){
                 time[i]+=b;
             }
