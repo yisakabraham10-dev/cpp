@@ -11,9 +11,6 @@ int main (){
     int N; 
     cin>> N;
 
-    vector<int> lower_time_interval;
-    vector<int> higher_time_interval;
-    vector<int> number_of_buckets;
     vector<int> time(10000);
 
     for (int i = 0; i< N; i++){
