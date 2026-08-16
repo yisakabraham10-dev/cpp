@@ -85,6 +85,10 @@ int main (){
             high -= traffics[i].low;
             low -= traffics[i].high;
         } 
+
     }
+    //is the intersection legit?
+    if (low>high){
+        return 0;
     cout <<low<<" "<<high;
 }
