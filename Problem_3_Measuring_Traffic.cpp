@@ -1,60 +1,90 @@
 #include <iostream>
 #include <vector>
-#include<algorithm>
-#include<string>
-#include<climits>
+#include <algorithm>
+#include <string>
+#include <climits>
 
-using namespace std;
+
+using namespace std; 
 
 struct traffic{
     string onoroff;
-    int lb;
-    int ub;
+    int low;
+    int high;
 };
 
 int main (){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
 
     int N;
     cin>>N;
 
-    vector<traffic> traffics(N);
+    vector<traffic> traffics (N);
 
-    for (int i = 0; i< N; i++){
-        cin>>traffics[i].onoroff>>traffics[i].lb>>traffics[i].ub;
+    for (int i =0; i < N; i++){
+        cin>>traffics[i].onoroff>>traffics[i].low>>traffics[i].high;
     }
 
-    int first_none;
-    for (int i = N-1; i >=0; i--){
-        if(traffics[i].onoroff=="none"){
-            first_none = i;
+    //find the first and last none
+    int found_the_last_none = -1;
+    int found_the_first_none =-1;
+
+    for (int i = N-1; i>=0; i--){
+        if (traffics[i].onoroff=="none"){
+            found_the_last_none= i;
             break;
         }
     }
-    int ub_increment= 0;
-    int lb_increment = 0;
-    int initial_assump_lb = INT_MIN;
-    int initial_assump_ub = INT_MAX;
-
-//for the inital stage
-    for (int i =0; i < N; i++){
-        if(traffics[i].onoroff == "on" ){
-            lb_increment -= traffics[i].lb;
-            ub_increment -= traffics[i].ub;
-
-        }
-        else if(traffics[i].onoroff== "off"){
-            lb_increment += traffics[i].lb;
-            ub_increment += traffics[i].ub;
-        }
-        else{
-            if (traffics[i].lb< initial_assump_lb){
-                initial_assump_lb = traffics[i].lb;
-            }
-            if (traffics[i].ub< initial_assump_ub){
-                initial_assump_ub= traffics[i].ub;
-            }
+    for (int i =0; i<N; i++){
+        if(traffics[i].onoroff=="none"){
+            found_the_first_none = i;
+            break;
         }
     }
+    //finding the initial range
+    
+    int high = INT_MAX;
+    int low = INT_MIN;
+
+    for (int i= found_the_last_none; i>=0; i--){
+        if (traffics[i].onoroff== "none"){
+            high = min(traffics[i].high, high);
+            low = max(traffics[i].low, low);
+        }
+        if (traffics[i].onoroff=="on"){
+            high -= traffics[i].low;
+            low -= traffics[i].high; 
+        }
+        if (traffics[i].onoroff== "off"){
+            high += traffics[i].low;
+            low += traffics[i].high;
+        }    
+    }
+    //is the intersection legit?
+    if (low>high){
+        return 0;
+    }
+
+    cout<< low<<" "<< high<<endl;
+
+
+    //finding the final range
+
+    high = INT_MAX;
+    low = INT_MIN;
+
+    for (int i= found_the_first_none; i < N; i++){
+        if (traffics[i].onoroff== "none"){
+            high = min(traffics[i].high, high);
+            low = max(traffics[i].low, low);
+        }
+        if (traffics[i].onoroff=="on"){
+            high += traffics[i].low;
+            low += traffics[i].high; 
+        }
+        if (traffics[i].onoroff== "off"){
+            high -= traffics[i].low;
+            low -= traffics[i].high;
+        } 
+    }
+    cout <<low<<" "<<high;
 }
