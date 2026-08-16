@@ -24,10 +24,18 @@ int main (){
     for (int i = 0; i< N; i++){
         cin>>traffics[i].onoroff>>traffics[i].lb>>traffics[i].ub;
     }
-int ub_increment= 0;
-int lb_increment = 0;
-int initial_assump_lb = INT_MIN;
-int initial_assump_ub = INT_MAX;
+
+    int first_none;
+    for (int i = N-1; i >=0; i--){
+        if(traffics[i].onoroff=="none"){
+            first_none = i;
+            break;
+        }
+    }
+    int ub_increment= 0;
+    int lb_increment = 0;
+    int initial_assump_lb = INT_MIN;
+    int initial_assump_ub = INT_MAX;
 
 //for the inital stage
     for (int i =0; i < N; i++){
