@@ -15,8 +15,8 @@ int main (){
     cin.tie(NULL);
     int N; cin>>N;
 
-    vector<coordinate>coordinates(N);
-    
+    vector<coordinate>coordinates(10001);
+
     coordinates[0].x = 0;
     coordinates[0].y = 0;
 
@@ -26,20 +26,28 @@ int main (){
         int b;cin>>b;
 
         if (a = 'N'){
-            coordinates[i].y = coordinates[i-1].y + b;
-            coordinates[i].x = coordinates[i-1].x;
+            for (int j = 0; j<b; j++){
+                coordinates[i+j].x = coordinates[i-1].x;
+                coordinates[i+j].y += coordinates[i-1].y+1;
+            }
         }
         if (a = 'E'){
-            coordinates[i].y = coordinates[i-1].y ;
-            coordinates[i].x = coordinates[i-1].x + b;
+            for (int j = 0; j<b; j++){
+                coordinates[i+j].x += coordinates[i-1].x+1;
+                coordinates[i+j].y = coordinates[i-1].y;
+            }
         }
         if (a = 'S'){
-            coordinates[i].y = coordinates[i-1].y - b;
-            coordinates[i].x = coordinates[i-1].x;
+            for (int j = 0; j<b; j++){
+                coordinates[i+j].x = coordinates[i-1].x;
+                coordinates[i+j].y += coordinates[i-1].y-1; 
+            }
         }
         if (a = 'W'){
-            coordinates[i].y = coordinates[i-1].y;
-            coordinates[i].x = coordinates[i-1].x- b;
+            for (int j = 0; j<b; j++){
+                coordinates[i+j].x += coordinates[i-1].x-1;
+                coordinates[i+j].y = coordinates[i-1].y;
+            }
         }
     }
     int moka = INT_MIN;
