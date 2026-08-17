@@ -133,3 +133,56 @@ int main (){
 
     return 0;
 }
+
+
+//ai version
+#include <iostream>
+#include <set>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    vector<string> board(3);
+
+    for (auto &row : board)
+        cin >> row;
+
+    int individual = 0;
+    int team = 0;
+
+    // The 8 possible winning lines
+    vector<vector<pair<int, int>>> lines = {
+        {{0,0}, {0,1}, {0,2}},
+        {{1,0}, {1,1}, {1,2}},
+        {{2,0}, {2,1}, {2,2}},
+        {{0,0}, {1,0}, {2,0}},
+        {{0,1}, {1,1}, {2,1}},
+        {{0,2}, {1,2}, {2,2}},
+        {{0,0}, {1,1}, {2,2}},
+        {{0,2}, {1,1}, {2,0}}
+    };
+
+    set<set<char>> individualWins;
+    set<set<char>> teamWins;
+
+    for (auto line : lines) {
+        set<char> cows;
+
+        for (auto [r, c] : line)
+            cows.insert(board[r][c]);
+
+        if (cows.size() == 1) {
+            individualWins.insert(cows);
+        }
+        else if (cows.size() == 2) {
+            teamWins.insert(cows);
+        }
+    }
+
+    cout << individualWins.size() << '\n';
+    cout << teamWins.size() << '\n';
+}
