@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 #include <algorithm>
 
 using namespace std; 
@@ -15,6 +16,7 @@ int main (){
     int N; cin>>N;
 
     vector<coordinate>coordinates(N);
+    
     coordinates[0].x = 0;
     coordinates[0].y = 0;
 
@@ -40,12 +42,18 @@ int main (){
             coordinates[i].x = coordinates[i-1].x- b;
         }
     }
-    
+    int moka = INT_MIN;
     for (int i =0; i < N; i++){
-        for (int i =0; i< N; i++){
-            continue;
+        for (int j =0; j< N; j++){
+            if ((coordinates[i].x==coordinates[j].x)&&(coordinates[i].y==coordinates[j].y)){
+                int n = j-i;
+                moka = max(moka, n);
+            };
         }
+
     }
+    cout<<moka;
+
 
     return 0;
 }
