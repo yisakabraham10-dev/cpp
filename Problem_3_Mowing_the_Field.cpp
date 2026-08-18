@@ -22,43 +22,46 @@ int main (){
 
     for (int i =1; i< N; i++){
 
-        char a;cin>>a;
-        int b;cin>>b;
+        char a;
+        cin>>a;
+        
+        int b;
+        cin>>b;
 
-        if (a = 'N'){
+        if (a == 'N'){
             for (int j = 0; j<b; j++){
-                coordinates[i+j].x = coordinates[i-1].x;
-                coordinates[i+j].y += coordinates[i-1].y+1;
+                coordinates[i+j].x = coordinates[i+j-1].x;
+                coordinates[i+j].y = coordinates[i+j-1].y+1;
             }
         }
-        if (a = 'E'){
+        if (a == 'E'){
             for (int j = 0; j<b; j++){
-                coordinates[i+j].x += coordinates[i-1].x+1;
-                coordinates[i+j].y = coordinates[i-1].y;
+                coordinates[i+j].x = coordinates[i+j-1].x+1;
+                coordinates[i+j].y = coordinates[i+j-1].y;
             }
         }
-        if (a = 'S'){
+        if (a == 'S'){
             for (int j = 0; j<b; j++){
-                coordinates[i+j].x = coordinates[i-1].x;
-                coordinates[i+j].y += coordinates[i-1].y-1; 
+                coordinates[i+j].x = coordinates[i+j-1].x;
+                coordinates[i+j].y = coordinates[i+j-1].y-1; 
             }
         }
-        if (a = 'W'){
+        if (a == 'W'){
             for (int j = 0; j<b; j++){
-                coordinates[i+j].x += coordinates[i-1].x-1;
-                coordinates[i+j].y = coordinates[i-1].y;
+                coordinates[i+j].x = coordinates[i+j-1].x-1;
+                coordinates[i+j].y = coordinates[i+j-1].y;
             }
         }
     }
+    // check the max
     int moka = INT_MIN;
-    for (int i =0; i < N; i++){
-        for (int j =0; j< N; j++){
+    for (int i = 0; i < coordinates.size(); i++){
+        for (int j = i; j <coordinates.size(); j++){
             if ((coordinates[i].x==coordinates[j].x)&&(coordinates[i].y==coordinates[j].y)){
-                int n = j-i;
-                moka = max(moka, n);
-            };
+                int no = j -i;
+                moka = max(moka, no);
+            }
         }
-
     }
     cout<<moka;
 
